@@ -14,6 +14,6 @@ public struct ZombieMovementJob : IJobParallelFor
 
     public void Execute(int index)
     {
-        Positions[index] += new float3(0f, 0f, Positions[index].z - MoveSpeeds[index] * DeltaTime);
+        Positions[index] -= new float3(0f, 0f, MoveSpeeds[index] * DeltaTime);
     }
 }

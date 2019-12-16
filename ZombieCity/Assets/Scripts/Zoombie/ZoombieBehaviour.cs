@@ -33,7 +33,7 @@ public class ZoombieBehaviour : MonoBehaviour
         {
             var spawnZombie = _entityManager.Instantiate(zombieEntity);
             var initialPosition = GetSpawnPointInWorldSpace();
-            var moveSpeed = UnityEngine.Random.Range(0.01f, 0.05f);
+            var moveSpeed = UnityEngine.Random.Range(0.1f, 0.5f);
 
             _zombieEntities.Add(new ZombieEntity
             {
