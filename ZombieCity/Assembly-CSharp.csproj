@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\3D Assets\AllSkyFree\AllSkyFree_Menu.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Ball.cs" />
     <Compile Include="Assets\Scripts\Zoombie\ZombieMovementJob.cs" />
     <Compile Include="Assets\Scripts\Zoombie\ZoombieBehaviour.cs" />
     <None Include="Assets\3D Assets\AllSkyFree\AllSkyFree_Readme.txt" />

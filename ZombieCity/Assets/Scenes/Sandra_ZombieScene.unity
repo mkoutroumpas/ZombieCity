@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 1971040122}
   PlayerCamera: {fileID: 1653135597}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &148248844
 GameObject:
@@ -450,7 +451,7 @@ PrefabInstance:
     - target: {fileID: 1998371697940912222, guid: d58be77cba3adf54cb14b15052b86514,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3305920991726709325, guid: d58be77cba3adf54cb14b15052b86514,
         type: 3}
@@ -613,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &774299302
 GameObject:
@@ -876,6 +878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &1087916412 stripped
 GameObject:
@@ -916,6 +919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &1176218160
 GameObject:
@@ -1026,7 +1030,7 @@ PrefabInstance:
     - target: {fileID: 4803014352389650695, guid: 06cb2b131fe009c47a523671a8fa9ed8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8429865231615740692, guid: 06cb2b131fe009c47a523671a8fa9ed8,
         type: 3}
@@ -1409,7 +1413,7 @@ PrefabInstance:
     - target: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
@@ -1541,6 +1545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &1978477753 stripped
 GameObject:
@@ -1562,6 +1567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &2024427205 stripped
 GameObject:
@@ -1583,6 +1589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!1 &2146103948
 GameObject:
@@ -1618,6 +1625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
   PlayerCamera: {fileID: 0}
+  ZombieSpawnPeriod: 10
   RoadWidth: 5
 --- !u!65 &2146103950
 BoxCollider:
