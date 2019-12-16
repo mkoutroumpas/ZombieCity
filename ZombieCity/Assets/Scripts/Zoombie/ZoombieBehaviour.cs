@@ -11,13 +11,9 @@ public class ZoombieBehaviour : MonoBehaviour
     public GameObject ZombiePrefab;
     public GameObject PlayerCamera;
 
-    [SerializeField]
-    public float ZombieSpawnPeriod = 10f;
+    public int RoadWidth = 30;
+    public int NumberOfZombies = 100;
 
-    public int RoadWidth = 15;
-
-    private Entity _zombieEntity;
-    private float _nextZombieSpawnTime = 0.0f;
     private List<ZombieEntity> _zombieEntities;
 
     public void Start()
@@ -25,31 +21,16 @@ public class ZoombieBehaviour : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
-        _zombieEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(ZombiePrefab, settings);
+        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        var zombieEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(ZombiePrefab, settings);
 
         _zombieEntities = new List<ZombieEntity>();
-    }
 
-    private void Update()
-    {
-        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-        var _moveSpeeds = new NativeList<float>();
-        var _positions = new NativeList<float3>();
-
-        if (Time.time > _nextZombieSpawnTime)
+        for (int i = 0; i < NumberOfZombies; i++)
         {
-            var spawnZombie = entityManager.Instantiate(_zombieEntity);
-
+            var spawnZombie = entityManager.Instantiate(zombieEntity);
             var initialPosition = GetSpawnPointInWorldSpace();
-
-            _positions.Add(initialPosition);
-
             var moveSpeed = UnityEngine.Random.Range(1f, 5f);
-
-            _moveSpeeds.Add(moveSpeed);
-
-            entityManager.SetComponentData(spawnZombie, new Translation { Value = initialPosition });
 
             _zombieEntities.Add(new ZombieEntity
             {
@@ -58,32 +39,40 @@ public class ZoombieBehaviour : MonoBehaviour
                 MoveSpeed = moveSpeed
             });
 
-            _nextZombieSpawnTime += ZombieSpawnPeriod;
+            entityManager.SetComponentData(spawnZombie, new Translation { Value = initialPosition });
         }
+    }
 
-        var zombieMovementJob = new ZombieMovementJob
-        {
-            DeltaTime = Time.deltaTime,
-            MoveSpeeds = _moveSpeeds,
-            Positions = _positions
-        };
+    private void Update()
+    {
+        ////var _moveSpeeds = new NativeList<float>();
+        ////var _positions = new NativeList<float3>();
 
-        var jobHandle = zombieMovementJob.Schedule();
-        jobHandle.Complete();
+        
 
-        for (var index = 0; index < _zombieEntities.Count; index++)
-        {
-            entityManager.SetComponentData(_zombieEntities[index].Entity, new Translation { Value = _zombieEntities[index].Position });
-        }
+        ////var zombieMovementJob = new ZombieMovementJob
+        ////{
+        ////    DeltaTime = Time.deltaTime,
+        ////    MoveSpeeds = _moveSpeeds,
+        ////    Positions = _positions
+        ////};
 
-        _moveSpeeds.Dispose();
-        _positions.Dispose();
+        ////var jobHandle = zombieMovementJob.Schedule();
+        ////jobHandle.Complete();
+
+        ////for (var index = 0; index < _zombieEntities.Count; index++)
+        ////{
+        ////    entityManager.SetComponentData(_zombieEntities[index].Entity, new Translation { Value = _zombieEntities[index].Position });
+        ////}
+
+        ////_moveSpeeds.Dispose();
+        ////_positions.Dispose();
     }
     
     private float3 GetSpawnPointInWorldSpace()
     {
         var x = transform.position.x + UnityEngine.Random.Range(-RoadWidth / 2, RoadWidth / 2);
-        var z = transform.position.z + UnityEngine.Random.Range(-10f, 10f);
+        var z = transform.position.z + UnityEngine.Random.Range(-2f, 2f);
         var y = transform.position.y;
 
         return new float3(x, y, z);
