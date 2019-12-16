@@ -4,18 +4,16 @@ using Unity.Jobs;
 using Unity.Mathematics;
 
 [BurstCompile]
-public struct ZombieMovementJob : IJob
+public struct ZombieMovementJob : IJobParallelFor
 {
     [ReadOnly]
-    public NativeList<float> MoveSpeeds;
-    public NativeList<float3> Positions;
+    public NativeArray<float> MoveSpeeds;
+    public NativeArray<float3> Positions;
 
-    [ReadOnly]
     public float DeltaTime;
 
-    public void Execute()
+    public void Execute(int index)
     {
-        for (var index = 0; index < Positions.Length; index++)
-            Positions[index] += new float3(Positions[index].x, Positions[index].y, Positions[index].z - MoveSpeeds[index] * DeltaTime);
+        Positions[index] += new float3(0f, 0f, Positions[index].z - MoveSpeeds[index] * DeltaTime);
     }
 }

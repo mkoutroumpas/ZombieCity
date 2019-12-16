@@ -8,7 +8,9 @@ using UnityEngine;
 
 public class ZoombieBehaviour : MonoBehaviour
 {
+    [SerializeField]
     public GameObject ZombiePrefab;
+    [SerializeField]
     public GameObject PlayerCamera;
 
     public int RoadWidth = 30;
@@ -31,7 +33,7 @@ public class ZoombieBehaviour : MonoBehaviour
         {
             var spawnZombie = _entityManager.Instantiate(zombieEntity);
             var initialPosition = GetSpawnPointInWorldSpace();
-            var moveSpeed = UnityEngine.Random.Range(1f, 5f);
+            var moveSpeed = UnityEngine.Random.Range(0.01f, 0.05f);
 
             _zombieEntities.Add(new ZombieEntity
             {
@@ -46,13 +48,15 @@ public class ZoombieBehaviour : MonoBehaviour
 
     public void Update()
     {
-        var _moveSpeeds = new NativeList<float>();
-        var _positions = new NativeList<float3>();
+        var startTime = Time.realtimeSinceStartup;
 
-        for (int index = 0; index < NumberOfZombies; index++)
+        var _moveSpeeds = new NativeArray<float>(NumberOfZombies, Allocator.TempJob);
+        var _positions = new NativeArray<float3>(NumberOfZombies, Allocator.TempJob);
+
+        for (var index = 0; index < NumberOfZombies; index++)
         {
-            _moveSpeeds.Add(_zombieEntities[index].MoveSpeed);
-            _positions.Add(_zombieEntities[index].Position);
+            _moveSpeeds[index] = _zombieEntities[index].MoveSpeed;
+            _positions[index] = _zombieEntities[index].Position;
         }
 
         var zombieMovementJob = new ZombieMovementJob
@@ -62,11 +66,14 @@ public class ZoombieBehaviour : MonoBehaviour
             Positions = _positions
         };
 
-        var jobHandle = zombieMovementJob.Schedule();
+        var jobHandle = zombieMovementJob.Schedule(NumberOfZombies, 10);
         jobHandle.Complete();
 
-        for (var index = 0; index < _zombieEntities.Count; index++)
+        for (var index = 0; index < NumberOfZombies; index++)
         {
+            _zombieEntities[index].Position = _positions[index];
+            _zombieEntities[index].MoveSpeed = _moveSpeeds[index];
+
             _entityManager.SetComponentData(_zombieEntities[index].Entity, new Translation { Value = _zombieEntities[index].Position });
         }
 
