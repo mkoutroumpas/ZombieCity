@@ -121,6 +121,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &65509950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 65509951}
+  - component: {fileID: 65509952}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &65509951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65509950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &65509952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65509950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZombiePrefab: {fileID: 1971040122}
 --- !u!1 &148248844
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,8 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  movementSpeed: 4
+  ZombiePrefab: {fileID: 0}
 --- !u!1 &774299302
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,8 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1653135597}
-  movementSpeed: 4
+  ZombiePrefab: {fileID: 0}
 --- !u!1 &1087916412 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: d0131e3e08af6db41ae709a2c812c728,
@@ -765,8 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1653135597}
-  movementSpeed: 4
+  ZombiePrefab: {fileID: 0}
 --- !u!1 &1176218160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,8 +1420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1971040122}
-  movementSpeed: 5
+  ZombiePrefab: {fileID: 0}
 --- !u!1 &1978477753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5315677001553350782, guid: d58be77cba3adf54cb14b15052b86514,
@@ -1399,8 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  movementSpeed: 4
+  ZombiePrefab: {fileID: 0}
 --- !u!1 &2024427205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562,
@@ -1419,8 +1458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1653135597}
-  movementSpeed: 3
+  ZombiePrefab: {fileID: 0}
 --- !u!1 &2146103948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,8 +1491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1653135597}
-  movementSpeed: 4
+  ZombiePrefab: {fileID: 0}
 --- !u!65 &2146103950
 BoxCollider:
   m_ObjectHideFlags: 0

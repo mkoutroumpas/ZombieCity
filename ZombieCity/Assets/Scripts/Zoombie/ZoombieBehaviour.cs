@@ -6,7 +6,7 @@ using UnityEngine;
 public class ZoombieBehaviour : MonoBehaviour
 {
     public GameObject ZombiePrefab;
-
+    
     private Entity ZombieEntity;
 
     public void Start()
