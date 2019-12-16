@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
@@ -18,8 +19,6 @@ public class ZoombieBehaviour : MonoBehaviour
     private Entity _zombieEntity;
     private float _nextZombieSpawnTime = 0.0f;
     private List<ZombieEntity> _zombieEntities;
-    private NativeList<float> _moveSpeeds;
-    private NativeList<float3> _positions;
 
     public void Start()
     {
@@ -29,14 +28,14 @@ public class ZoombieBehaviour : MonoBehaviour
         _zombieEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(ZombiePrefab, settings);
 
         _zombieEntities = new List<ZombieEntity>();
-
-        _moveSpeeds = new NativeList<float>();
-        _positions = new NativeList<float3>();
     }
 
     private void Update()
     {
         var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+        var _moveSpeeds = new NativeList<float>();
+        var _positions = new NativeList<float3>();
 
         if (Time.time > _nextZombieSpawnTime)
         {
@@ -62,14 +61,23 @@ public class ZoombieBehaviour : MonoBehaviour
             _nextZombieSpawnTime += ZombieSpawnPeriod;
         }
 
-        var zombieMovementJob = new ZombieMovementJob()
+        var zombieMovementJob = new ZombieMovementJob
         {
             DeltaTime = Time.deltaTime,
             MoveSpeeds = _moveSpeeds,
             Positions = _positions
         };
 
-        var jobHandle = zombieMovementJob.Schedule(_zombieEntities.Count, 100);
+        var jobHandle = zombieMovementJob.Schedule();
+        jobHandle.Complete();
+
+        for (var index = 0; index < _zombieEntities.Count; index++)
+        {
+            entityManager.SetComponentData(_zombieEntities[index].Entity, new Translation { Value = _zombieEntities[index].Position });
+        }
+
+        _moveSpeeds.Dispose();
+        _positions.Dispose();
     }
     
     private float3 GetSpawnPointInWorldSpace()
