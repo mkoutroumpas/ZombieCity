@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6345789ccbbe1344a6bb11bb1d91751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZombiePrefab: {fileID: 1971040122}
+  ZombiePrefab: {fileID: 4803014352389650695, guid: 06cb2b131fe009c47a523671a8fa9ed8,
+    type: 3}
   PlayerCamera: {fileID: 1653135597}
   ZombieSpawnPeriod: 10
   RoadWidth: 5
