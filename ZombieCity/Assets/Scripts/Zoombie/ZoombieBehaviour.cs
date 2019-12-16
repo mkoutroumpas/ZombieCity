@@ -69,7 +69,7 @@ public class ZoombieBehaviour : MonoBehaviour
             Positions = _positions
         };
 
-
+        var jobHandle = zombieMovementJob.Schedule(_zombieEntities.Count, 100);
     }
     
     private float3 GetSpawnPointInWorldSpace()
