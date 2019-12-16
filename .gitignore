@@ -1,0 +1,9 @@
+.git/
+ZombieCity/.vs/
+ZombieCity/Build/
+ZombieCity/Documents/
+ZombieCity/Library/
+ZombieCity/Profiler Data/
+ZombieCity/Temp/
+ZombieCity/obj/
+ZombieCity/UnityPackageManager/
