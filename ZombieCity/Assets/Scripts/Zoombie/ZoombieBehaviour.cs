@@ -1,26 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
-public class ZoombieBehaviour : MonoBehaviour{
-    public GameObject Player;
-    public float movementSpeed = 4;
-    // public Transform player;
-    // private Rigidbody zoombiemove;
-    // Start is called before the first frame update
-    void Start()
+public class ZoombieBehaviour : MonoBehaviour
+{
+    public GameObject ZombiePrefab;
+
+    private Entity ZombieEntity;
+
+    public void Start()
     {
-       // zoombiemove = this.GetComponent<Ridigbody>();
-        
+        QualitySettings.vSyncCount = 0;
+
+        var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
+        ZombieEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(ZombiePrefab, settings);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.LookAt(Player.transform);
-        transform.position += transform.forward * movementSpeed * Time.deltaTime;
-        //Vector3 direction = player.position - transform.position;
-        //Debug.Log(direction);
+        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        var spawnZombie = entityManager.Instantiate(ZombieEntity);
 
+        entityManager.SetComponentData(spawnZombie, new Translation { Value = GetSpawnPointInWorldSpace() });
+    }
+
+    private float3 GetSpawnPointInWorldSpace()
+    {
+        return new float3(0f, 0f, 0f);
     }
 }
