@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 1971040122}
+  PlayerCamera: {fileID: 1653135597}
+  MoveSpeed: 4
 --- !u!1 &148248844
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +511,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!1 &774299302
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!1 &1087916412 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: d0131e3e08af6db41ae709a2c812c728,
@@ -808,6 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!1 &1176218160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!1 &1978477753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5315677001553350782, guid: d58be77cba3adf54cb14b15052b86514,
@@ -1440,6 +1450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!1 &2024427205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562,
@@ -1459,6 +1471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!1 &2146103948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  MoveSpeed: 4
 --- !u!65 &2146103950
 BoxCollider:
   m_ObjectHideFlags: 0
