@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToMove: {fileID: 4009061821792556535, guid: e9c91969d638b4a0eacf43dd59bf2e44,
     type: 3}
+  NumberOfObjects: 1000
 --- !u!4 &145576619
 Transform:
   m_ObjectHideFlags: 0

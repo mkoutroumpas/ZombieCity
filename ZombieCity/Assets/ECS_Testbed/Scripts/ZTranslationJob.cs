@@ -1,8 +1,10 @@
-﻿using Unity.Collections;
+﻿using Unity.Burst;
+using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 
-public class ZTranslationJob : IJobParallelFor
+[BurstCompile]
+public struct ZTranslationJob : IJobParallelFor
 {
     [ReadOnly]
     public NativeArray<float> MoveSpeeds;
@@ -10,15 +12,11 @@ public class ZTranslationJob : IJobParallelFor
 
     public float DeltaTime;
 
-    private bool _minusDirection;
-
-    public ZTranslationJob(bool minusDirection = false)
-    {
-        _minusDirection = minusDirection;
-    }
+    [ReadOnly]
+    public bool MinusDirection;
 
     public void Execute(int index)
     {
-        Positions[index] += (_minusDirection ? -1 : 1) * new float3(0f, 0f, MoveSpeeds[index] * DeltaTime);
+        Positions[index] += new float3(0f, 0f, (MinusDirection ? -1 : 1) * MoveSpeeds[index] * DeltaTime);
     }
 }
