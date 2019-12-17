@@ -7,10 +7,10 @@ using Unity.Mathematics;
 [BurstCompile]
 public struct ZTranslationJob : IJobParallelFor
 {
-    [ReadOnly]
     public NativeArray<float> MoveSpeeds;
     public NativeArray<float3> Positions;
 
+    [ReadOnly]
     public float DeltaTime;
 
     [ReadOnly]
