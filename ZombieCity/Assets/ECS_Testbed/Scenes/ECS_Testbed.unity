@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c5ecde8482f4ebf8efbda85f7c8552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseJobSystem: 1
   ObjectToMove: {fileID: 4009061821792556535, guid: e9c91969d638b4a0eacf43dd59bf2e44,
     type: 3}
   NumberOfObjects: 1000
