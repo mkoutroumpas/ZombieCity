@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private bool USE_ENTITIES = false;
+
+
     public Color[] colors;
 
-    public GameObject projectile;
+    public GameObject projectilePrefab;
     public float launchForce = 50;
     public float launchAngle = 20;
     public float launchHorzCount = 10;
@@ -18,6 +23,19 @@ public class Player : MonoBehaviour
     public float moveSpeed = 10.0f;
     public float turnSpeed = 100.0f;
 
+    EntityManager entityManager;
+    Entity projectileEntityPrefab;
+
+    private void Start()
+    {
+        if (USE_ENTITIES)
+        {
+            entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
+            projectileEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(projectilePrefab, settings);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -28,18 +46,38 @@ public class Player : MonoBehaviour
             float hHalf = Mathf.Max(0.5f, launchHorzCount / 2f);
             float hStep = (launchHorzSpread / launchHorzCount);
             int count = 0;
+            int max = 9999;
             for (float v = -vHalf; v < vHalf; v++)
             {
                 for (float h = -hHalf; h < hHalf; h++)
                 {
-                    GameObject bullet = Instantiate(projectile, transform.position, transform.rotation);
-                    bullet.transform.Rotate(bullet.transform.up, h * hStep + Random.Range(-0.5f * launchVariability, 0.5f * launchVariability));
-                    bullet.GetComponent<Rigidbody>().AddForce(Quaternion.AngleAxis(-(launchAngle + v * vStep) + Random.Range(-0.5f * launchVariability, 0.5f * launchVariability), bullet.transform.right) * bullet.transform.forward * (launchForce + Random.Range(-5f * launchVariability, 5f * launchVariability)), ForceMode.Impulse);
-                    Color c = colors[Random.Range(0, colors.Length)];
-                    bullet.GetComponent<Ball>().trail.startColor = c;
-                    bullet.GetComponent<Ball>().trail.endColor = new Color(c.r, c.g, c.b, 0);
+                    if (USE_ENTITIES)
+                    {
+                        Entity projectile = entityManager.Instantiate(projectileEntityPrefab);
+                        entityManager.SetComponentData(projectile, new Translation { Value = transform.position });
+                        entityManager.SetComponentData(projectile, new Rotation { Value = transform.rotation });
+                        //entityManager.SetComponentData(projectile, new InitialForce { Value = transform.forward * launchForce});
+                    }
+                    else
+                    {
+                        Ball bullet = Instantiate(projectilePrefab, transform.position, transform.rotation).GetComponent<Ball>();
+                        Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
+
+                        float forceAmount = launchForce + Random.Range(-5f * launchVariability, 5f * launchVariability);
+                        Quaternion yRot = Quaternion.AngleAxis(h * hStep + Random.Range(-0.5f * launchVariability, 0.5f * launchVariability), bullet.transform.up);
+                        Quaternion xRot = Quaternion.AngleAxis(-(launchAngle + v * vStep) + Random.Range(-0.5f * launchVariability, 0.5f * launchVariability), bullet.transform.right);
+                        bullet.GetComponent<Rigidbody>().AddForce(yRot * xRot * bullet.transform.forward * forceAmount, ForceMode.Impulse);
+
+                        Color c = colors[Random.Range(0, colors.Length)];
+                        bullet.GetComponent<Ball>().trail.startColor = c;
+                        bullet.GetComponent<Ball>().trail.endColor = new Color(c.r, c.g, c.b, 0);
+                    }
                     count++;
+                    if (count == max)
+                        break;
                 }
+                if (count == max)
+                    break;
             }
             Debug.Log($"Spawned {count} bullets!");
         }

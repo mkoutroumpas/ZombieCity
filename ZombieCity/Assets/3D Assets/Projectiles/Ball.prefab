@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2318028109049594585}
   - component: {fileID: 264057158957743285}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 2420992074902974688}
   - component: {fileID: 2420992074902204608}
   - component: {fileID: 2420992074901205504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4240698413413055514}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: golfBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4240698413737133832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ballgeom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,10 +280,10 @@ GameObject:
   - component: {fileID: 4240698414843692580}
   - component: {fileID: 4240698414843692579}
   - component: {fileID: 4240698414843692578}
-  - component: {fileID: 4240698414843692577}
   - component: {fileID: 4240698414843692581}
-  - component: {fileID: 2355225993030050868}
-  m_Layer: 0
+  - component: {fileID: 2445266248062028662}
+  - component: {fileID: 3121728400773615233}
+  m_Layer: 9
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,19 +353,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &4240698414843692577
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240698414843692576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4240698414843692581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trail: {fileID: 264057158957743285}
---- !u!54 &2355225993030050868
+--- !u!54 &2445266248062028662
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,10 +375,23 @@ Rigidbody:
   m_GameObject: {fileID: 4240698414843692576}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.2
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!135 &3121728400773615233
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4240698414843692576}
+  m_Material: {fileID: 13400000, guid: 364942a02ba5341af8fd4351ec91ff39, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
