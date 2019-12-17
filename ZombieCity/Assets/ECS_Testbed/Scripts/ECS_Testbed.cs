@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Classes;
+using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -10,6 +11,8 @@ public class ECS_Testbed : MonoBehaviour
     private List<ZMoveableObject> _moveableObjects;
 
     [SerializeField]
+    public bool UseJobSystem = true;
+    [SerializeField]
     public Transform ObjectToMove;
     [SerializeField]
     public int NumberOfObjects = 1000;
@@ -17,7 +20,7 @@ public class ECS_Testbed : MonoBehaviour
     private void Start()
     {
         _moveableObjects = new List<ZMoveableObject>();
-        
+
         for (var i = 0; i < NumberOfObjects; i++)
         {
             Transform instance = Instantiate(
@@ -34,38 +37,48 @@ public class ECS_Testbed : MonoBehaviour
         }
     }
 
-    private void Update()   
+    private void Update()
     {
         float startTime = Time.realtimeSinceStartup;
 
-        var _velocities = new NativeArray<float>(_moveableObjects.Count, Allocator.TempJob);
-        var _positions = new NativeArray<float3>(_moveableObjects.Count, Allocator.TempJob);
-
-        for (var i = 0; i < _moveableObjects.Count; i++)
+        if (UseJobSystem)
         {
-            _positions[i] = _moveableObjects[i].Transform.position;
-            _velocities[i] = _moveableObjects[i].Velocity;
+            var _velocities = new NativeArray<float>(_moveableObjects.Count, Allocator.TempJob);
+            var _positions = new NativeArray<float3>(_moveableObjects.Count, Allocator.TempJob);
+
+            for (var i = 0; i < _moveableObjects.Count; i++)
+            {
+                _positions[i] = _moveableObjects[i].Transform.position;
+                _velocities[i] = _moveableObjects[i].Velocity;
+            }
+
+            var job = new ZTranslationJob
+            {
+                MoveSpeeds = _velocities,
+                Positions = _positions,
+                DeltaTime = Time.deltaTime,
+                MinusDirection = true
+            };
+
+            var jobHandle = job.Schedule(_moveableObjects.Count, 10);
+            jobHandle.Complete();
+
+            for (var i = 0; i < _moveableObjects.Count; i++)
+            {
+                _moveableObjects[i].Transform.position = _positions[i];
+            }
+
+            _velocities.Dispose();
+            _positions.Dispose();
         }
-
-        var job = new ZTranslationJob
+        else
         {
-            MoveSpeeds = _velocities,
-            Positions = _positions,
-            DeltaTime = Time.deltaTime,
-            MinusDirection = true
-        };
-
-        var jobHandle = job.Schedule(_moveableObjects.Count, 10);
-        jobHandle.Complete();
-
-        for (var i = 0; i < _moveableObjects.Count; i++)
-        {
-            _moveableObjects[i].Transform.position = _positions[i];
-            _moveableObjects[i].Velocity = _velocities[i];
+            for (var i = 0; i < _moveableObjects.Count; i++)
+            {
+                _moveableObjects[i].Transform.position += new Vector3(0f, 0f, -_moveableObjects[i].Velocity * Time.deltaTime);
+                Helpers.AddDummyHeavyTask();
+            }
         }
-
-        _velocities.Dispose();
-        _positions.Dispose();
 
         Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
     }
