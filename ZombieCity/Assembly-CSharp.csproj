@@ -74,9 +74,6 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Build.Internals">
-      <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Build.Internals.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.CacheServer">
       <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
     </Reference>
@@ -170,9 +167,6 @@
     <Reference Include="Unity.Transforms.Editor">
       <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Transforms.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Build">
-      <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Build.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline">
       <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
@@ -187,6 +181,12 @@
     </Reference>
     <Reference Include="Unity.Transforms.Hybrid">
       <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Transforms.Hybrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Build.Internals">
+      <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Build.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Build">
+      <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/ScriptAssemblies/Unity.Build.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -363,7 +363,7 @@
       <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/PackageCache/com.unity.burst@1.1.2/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/PackageCache/com.unity.collections@0.3.0-preview.0/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>E:/Projects/ZombieCity/ZombieCity/Library/PackageCache/com.unity.collections@0.4.0-preview.6/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/2019.3.0f3/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
